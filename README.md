@@ -1,2 +1,2 @@
-# dev4passion_eword_english_dapp_mobile
-Decentralized version of mobile application to learn languages' vocabulary
+# dev4passion_eword_dapp_mobile
+Decentralized mobile application to learn languages' vacabulary
