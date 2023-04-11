@@ -28,6 +28,8 @@ import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -50,6 +52,31 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import EWords from './EWords';
 import { Formik } from 'formik';
+
+
+const Tab = createBottomTabNavigator();
+
+const BottomTabNavigator = () => {
+  return (
+    <Tab.Navigator>
+      {/* <Tab.Screen name='Home' component={MainScreen} /> */}
+      <Tab.Screen name='Home' component={DrawerNavigator} />
+      <Tab.Screen name='Contact' component={ContactScreen} />
+    </Tab.Navigator>
+  )
+}
+
+const MainScreen = () => {
+  return (
+    <Text>MainScreen</Text>
+  )
+}
+
+const ContactScreen = () => {
+  return (
+    <Text>ContactScreen</Text>
+  )
+}
 
 
 function HomeScreen({ navigation }) {
@@ -302,6 +329,16 @@ const Section = ({children, title}): Node => {
 
 const Drawer = createDrawerNavigator();
 
+const DrawerNavigator = () => {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name='Words' component={WordsScreen} />
+      <Drawer.Screen name='Learn' component={LearnWordsScreen} />
+
+    </Drawer.Navigator>
+  )
+}
+
 const App: () => Node = () => {
 
   const [engword, setEngword] = React.useState('');
@@ -339,12 +376,14 @@ const App: () => Node = () => {
 
 
   
-    <Drawer.Navigator initialRouteName="Learn">
+    {/* <Drawer.Navigator initialRouteName="Learn">
       
       <Drawer.Screen name="Words" component={WordsScreen} />
       <Drawer.Screen name="Learn" component={LearnWordsScreen} />
       <Drawer.Screen name="Notifications" component={NotificationsScreen} />
-    </Drawer.Navigator>
+    </Drawer.Navigator> */}
+
+    <BottomTabNavigator />
   </NavigationContainer>
 
 
