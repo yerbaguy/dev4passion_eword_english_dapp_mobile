@@ -16,7 +16,9 @@ import Web3 from 'web3';
 
 import  EWordContractt  from './utils/EWordContract.json';
 
+// 0x76d9c26896A069f481efCDe2d3E0C706dAC2A9BB
 const ewordAddress = "0x047F65031c8aBf370FDBfEf667B0b1fd702F09Ef"
+// const ewordAddress = "0x76d9c26896A069f481efCDe2d3E0C706dAC2A9BB"
 
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 var Contract = require('web3-eth-contract');
@@ -33,6 +35,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import type {Node} from 'react';
 import {
   SafeAreaView,
+  Modal,
+  Touchable,
+  TouchableOpacity,
+  FlatList,
   TextInput,
   ScrollView,
   StatusBar,
@@ -51,17 +57,42 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import EWords from './EWords';
+import EngWords from './EngWords';
 import { Formik } from 'formik';
+import LearnEngWords from './LearnEngWords';
+
+
+//const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
+var Contract = require('web3-eth-contract');
+
+//import Web3 from 'web3';
 
 
 const Tab = createBottomTabNavigator();
+
+// const onGetAccounts = async() => {
+//   console.log("onGetAccounts");
+
+//   try {
+//     web3.setProvider(provider);
+//     const acc = await web3.eth.personal.getAccount();
+//     console.log(acc);
+//   } catch (error) {
+//     console.log("error", error);
+//   }
+// }
 
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator>
       {/* <Tab.Screen name='Home' component={MainScreen} /> */}
-      <Tab.Screen name='Home' component={DrawerNavigator} />
-      <Tab.Screen name='Contact' component={ContactScreen} />
+
+      {/* <Tab.Screen name='Home' component={DrawerNavigator} /> */}
+      
+      {/* <Tab.Screen name='Learn' component={LearnnnnScreen} options={{ headerShown: false }}/> */}
+      <Tab.Screen name='Learn' component={LearnEngWords} options={{ headerShown: false }}/>
+      <Tab.Screen name='Words' component={WordssScreen} />
+      {/* <Tab.Screen name='Contact' component={ContactScreen} /> */}
     </Tab.Navigator>
   )
 }
@@ -71,6 +102,289 @@ const MainScreen = () => {
     <Text>MainScreen</Text>
   )
 }
+
+
+
+
+
+const LearnScreen = () => {
+  
+  const [correct_engword_explained, setCorrect_engword_explained] = React.useState([
+    {engword_explained:"case", key:"7"}
+  ])
+
+  const [engword, setEngword] = React.useState([
+    {engword:"case", key:"6"}
+  ])
+  const [engword_explained, setEngword_Explained] = React.useState([
+    {engword_explained:"kind", key:"2"},
+    {engword_explained:"hardly", key:"3"},
+    {engword_explained:"least", key:"4"},
+    {engword_explained:"particular", key:"5"},
+    {engword_explained:"each", key:"6"},
+  ])
+
+  const handleClick = (item) => {
+
+    console.log("item", item);
+  }
+ 
+ // const merged_arrays = engword + engword_explained;
+ 
+//  const merged_arrays = engword.concat(engword_explained);
+// const merged_arrays = engword_explained.concat(correct_engword_explained);
+
+const merged_arrays = [...engword_explained, ...correct_engword_explained];
+  
+  return (
+
+    <View>
+      {
+        // engword_explained.map((item) => {
+        //   return (
+        //     <View>
+        //       <Text>{item.engword_explained}</Text>
+        //     </View>
+        //   )
+        // })
+
+        // merged_arrays.map((item) => {
+        //   return (
+        //     <View>
+        //       <Text>{item.engword}</Text>
+        //       <Text>{item.engword_explained}</Text>
+        //     </View>
+        //   )
+        // })
+
+        // engword_explained.map((item) => {
+        //   return (
+        //     <View>
+        //       <Text>{item.engword_explained}</Text>
+        //     </View>
+        //   )
+        // })
+
+        // merged_arrays.map((item) => {
+        //   return (
+        //     <View>
+        //       <Text>{item.engword_explained}</Text>
+        //     </View>
+        //   )
+        // })
+
+        merged_arrays.map((item) => {
+          return (
+            <View>
+              {/* <TouchableOpacity> */}
+              {/* <Text onPress={handleClick(item)} key={index}>{item.id}{item.engword_explained}</Text> */}
+              <Text onPress={handleClick(item)}>{item.id}{item.engword_explained}</Text>
+              {/* </TouchableOpacity> */}
+            </View>
+          )
+        })
+
+
+
+
+        // console.log("merged_array", merged_arrays)
+
+        
+      }
+
+    </View>
+
+    // <Text>Learn Screen</Text>
+   
+  )
+}
+
+const LearnnScrean = () => {
+
+  const [correct_engword_explained, setCorrect_engword_explained] = React.useState([
+    {engword_explained:"case", key:"6"}
+  ])
+
+  const [engword_explained, setEngword_Explained] = React.useState([
+    {engword_explained:"kind", key:"1"},
+    {engword_explained:"hardly", key:"2"},
+    {engword_explained:"least", key:"3"},
+    {engword_explained:"particular", key:"4"},
+    {engword_explained:"each", key:"5"},
+  ])
+
+  const [isRender, setisRender] = useState(false)
+  const [isModalVisible, setisModalVisible] = useState(false)
+
+  const merged_arrays = [...engword_explained, ...correct_engword_explained];
+
+  const renderItem = ({item, index}) => {
+
+  }
+
+  return ( 
+    
+    <SafeAreaView style={styles.container}>
+      <FlatList
+      data={merged_arrays}
+      // keyExtractor={(item)=>item.id.toString()}
+      keyExtractor={(item)=>item.toString()}
+      renderItem={renderItem}
+      extraData={isRender}
+      />
+
+   <Modal
+    animationType='fade'
+    visible={isModalVisible}
+    onRequestClose={()=>setisModalVisible(false)}
+    >
+      <View>
+
+      </View>
+
+    </Modal>
+
+
+
+    </SafeAreaView>
+  )
+}
+
+
+const LearnnnnScreen = () => {
+  
+  const [correct_engword_explained, setCorrect_engword_explained] = React.useState([
+    {engword_explained:"case", id:"7"}
+  ])
+
+  const [engword_explained, setEngword_Explained] = React.useState([
+    {engword_explained:"kind", id:"2"},
+    {engword_explained:"hardly", id:"3"},
+    {engword_explained:"least", id:"4"},
+    {engword_explained:"particular", id:"5"},
+    {engword_explained:"each", id:"6"},
+  ])
+
+  const merged_arrays = [...engword_explained, ...correct_engword_explained];
+
+  const words = [
+    {
+      id: 1,
+      engword_explained: 'kind'
+    },
+    {
+      id: 2,
+      engword_explained: 'hardly'
+    },
+    {
+      id: 3,
+      engword_explained: 'least'
+    },
+    {
+      id: 4,
+      engword_explained: 'particular'
+    },
+];
+
+   const [engword, setEngword] = useState([
+    {
+      key: "1",
+      engword_explained: "kind"
+    },
+    {
+      key: "2",
+      engword_explained: "hardly"
+    },
+    {
+      key: "3",
+      engword_explained: "least"
+    },
+    {
+      key: "4",
+      engword_explained: "particular"
+    },
+   ])
+
+  const oneMergedItem = ({item}) => {
+
+    <Text>{item.engword_explained}</Text>
+  }
+
+  const handleit = (item) => {
+
+    console.log("item",item);
+  }
+  
+  const pressHandler = (engword_explained) => {
+
+    console.log(engword_explained);
+  }
+  
+  return (
+    
+    // <Text>
+    //   Learnnnn Screen
+    // </Text>
+
+    <View>
+      <FlatList 
+      //  data={engword}
+       data={merged_arrays}
+       renderItem={({item}) => (
+        <View>
+          <TouchableOpacity onPress={()=> pressHandler(item.engword_explained)}>
+          <Text>
+            {/* {item.engword_explained} */}
+           {item.engword_explained}
+           </Text>
+           </TouchableOpacity>
+        </View>
+       )}
+      />
+    </View>
+
+    //////works
+    // <View>
+    //   <ScrollView>
+    //     {
+    //       engword.map((item) => {
+    //         return (
+    //           <View key={item.key}>
+    //             {/* <Text>{item.engword_explained}</Text> */}
+    //             <Text onPress={handleit(item)}>{item.engword_explained}</Text>
+    //           </View>
+    //         )
+    //       })
+    //     }
+    //   </ScrollView>
+    // </View>
+    ////////////
+
+    // <SafeAreaView>
+    // <View>
+    // {/* <Text>
+    //   Learnnnn Screen
+    // </Text> */}
+    // <FlatList
+    // // data = {merged_arrays}
+    // data = {words}
+
+    // renderItem = { oneMergedItem }
+    // />
+    // </View>
+    // </SafeAreaView>
+  )
+}
+
+
+
+const WordssScreen = () => {
+  return (
+     <Text>Words Screen</Text>
+    
+  )
+}
+
 
 const ContactScreen = () => {
   return (
@@ -168,8 +482,18 @@ function LearnWordsScreen({ navigation }) {
        
   }
 
+  // const onGetAccounts = async() => {
+  //   console.log("onGetAccounts");
+  // }
+
   useEffect(()=>{
 
+   // onGetAccounts();
+
+   console.log("AlkjsdBlkajsdlfkjCClkjasdlkjfalksd");
+
+    console.log("lkajsdlkfj");
+ 
     var data = [];
 
     Contract.setProvider('wss://eth-goerli.g.alchemy.com/v2/1NkuHJk9fySa1xwgPZ21rwqkGJbh_9Cm');
@@ -341,8 +665,51 @@ const DrawerNavigator = () => {
 
 const App: () => Node = () => {
 
+
+  const [web3] = useState<Web3>(new Web3())
+  //  const [provider] = useState(new Web3.providers.HttpProvider('http://127.0.0.1:8545'))
+  // const [provider] = useState(new Web3.providers.HttpProvider('http://127.0.0.1:8545'))
+  // const [provider] = useState(new Web3.providers.HttpProvider('wss://polygon-mainnet.g.alchemy.com/v2/gDpJAQB45zHfsl9wQW3acVBU_dUOycJX'))
+  const [provider] = useState(new Web3.providers.HttpProvider('wss://polygon-mainnet.g.alchemy.com/v2'))
+
+  // const [provider] = useState(new Web3.providers.HttpProvider('http://192.168.0.0.1:8545'))
+
+
+  const onGetAccounts = async() => {
+    console.log("onGetAccounts");
+  
+    try {
+      web3.setProvider(provider);
+      // const acc = await web3.eth.personal.getAccounts();
+      const acc = await web3.eth.personal.getAccounts();
+      console.log(acc);
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+
+
+
+  // useEffect(()=>{
+
+  //   onGetAccounts();
+  //  // console.log("lkajsdlkfj");
+    
+  // },[])
+
   const [engword, setEngword] = React.useState('');
   const [text, setText] = useState('');
+
+  // const [engword_explained, setEngword_Explained] = React.useState([
+  //   {engword_explained:"kind", key:"1"},
+  //   {engword_explained:"hardly", key:"2"},
+  //   {engword_explained:"least", key:"3"},
+  //   {engword_explained:"particular", key:"4"},
+  //   {engword_explained:"each", key:"5"},
+  // ])
+
+  
 
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -363,6 +730,9 @@ const App: () => Node = () => {
     
 
 <SafeAreaView>
+  {/* <EngWords /> */}
+   {/* <EWords /> */}
+  
         <TextInput
         // onChangeText={engw => setEngword(engw)}
         // onChangeText={engw => setEngword(engw)}
@@ -424,6 +794,23 @@ const App: () => Node = () => {
 };
 
 const styles = StyleSheet.create({
+ 
+  container: {
+    flex: 1,
+  },
+
+  item: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'grey',
+    alignItems: 'flex-start',
+
+  },
+  text: {
+    marginVertical: 30,
+    fontSize: 25,
+    fontWeight: 'bold',
+    marginLeft: 10,
+  },
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
