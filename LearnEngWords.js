@@ -33,10 +33,12 @@ const LearnEngWords = () => {
     // const [engword_explained, setEngword_Explained] = React.useState([]);
 
     const [correct_engword_explained, setCorrect_engword_explained] = useState();
-    const [engword_explained, setEngword_Explained] = useState();
+    // const [engword_explained, setEngword_Explained] = useState();
+    const [engword_explained, setEngword_Explained] = useState([]);
     const [engword_array, setEngword_array] = useState([]);
 
      // const merged_arrays = [...engword_explained, ...correct_engword_explained];
+     //const merged_arrays = [...engword_explained, ...correct_engword_explained];
 
 
 
@@ -134,7 +136,15 @@ const LearnEngWords = () => {
             console.log("eword_result--", result[0]);
             engword = result[0];
              setEngword(engword);
+            // setEngword_Explained(engword);
            // engword = result[0];
+
+            console.log("eword_correct_result--", result[2]);
+            let correct_eng_explained = result[2];
+             setCorrect_engword_explained(result[2])
+            //setCorrect_engword_explained(correct_eng_explained);
+            console.log("setCorrect_engword_explained", correct_engword_explained);
+
         });
 
         var ewords_result = contractt.methods.getEWords1(0).call((error, result) => {
@@ -146,6 +156,9 @@ const LearnEngWords = () => {
             // setEngword_array([...engword_array, result]);
             setEngword_array(result);
             console.log("engword_array--", engword_array);
+
+            setEngword_Explained(result);
+            console.log("engword_explained--", engword_explained);
             // engword_explained = result[0];
             engword_explained = result;
             // setEngword_Explained(result[0]);
@@ -158,7 +171,8 @@ const LearnEngWords = () => {
 
 
 
-    },[engword],[engword_explained],[engword_array])
+    // },[engword],[engword_explained],[engword_array]) //ok
+   },[engword],[engword_explained],[engword_array])
    //},[engword][ewords_result])
 
     // const newdata = "5"
@@ -231,6 +245,8 @@ const LearnEngWords = () => {
       const pressHandler = (item) => {
 
         console.log("item", item);
+        console.log("correct_engword_explained", correct_engword_explained);
+        console.log(item===correct_engword_explained);
       }
 
 
@@ -346,9 +362,12 @@ const LearnEngWords = () => {
             <Text>{engword}</Text>
             {/* {
                 merged_arrays.map( (item) => (
-                    <Text>{item.engword_explained}</Text>
+                    // <Text>{item.engword_explained}</Text>
+                    <Text>{item}</Text>
                 ))
             } */}
+
+
              {/* {
                 engword_explained.map( (item) => (
                     <Text>{item.engword_explained}</Text>
@@ -363,18 +382,35 @@ const LearnEngWords = () => {
 
 {/* onPress={()=> pressHandler(item.engword_explained)}> */}
 
+ 
+
 
             <FlatList 
             data={engword_array}
             renderItem={({item}) => (
                 <View>
-                    {/* <Text>{item.engword_explained}</Text> */}
-                    {/* <TouchableOpacity><Text onPress={handleClick(item)}>{item.id}{item.engword_explained}</Text></TouchableOpacity> */}
                     <TouchableOpacity onPress={()=> pressHandler(item.engword_explained)}><Text>{item.id}{item.engword_explained}</Text></TouchableOpacity>
-
                 </View>
             )}
             />
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+           {/* <FlatList 
+            data={merged_arrays}
+            renderItem={({item}) => (
+                <View>
+                                  <TouchableOpacity onPress={()=> pressHandler(item.engword_explained)}><Text>{item.id}{item.engword_explained}</Text></TouchableOpacity>
+
+                </View>
+            )}
+            /> */}
         </View>
     )
 }
