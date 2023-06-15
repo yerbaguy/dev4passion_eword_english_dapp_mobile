@@ -41,6 +41,13 @@ const LearnEngWords = () => {
      //const merged_arrays = [...engword_explained, ...correct_engword_explained];
 
 
+     // let wordid = randEngWord[0];
+
+     let wordid = 0;
+     
+
+
+     console.log("randEngWord", randEngWord);
 
     let data = {
         data: data
@@ -129,25 +136,109 @@ const LearnEngWords = () => {
     
         // });
 
+
+
+        // const getewordsresult = () => {
+        //     return (
+        //         contractt.methods.getEWords().call((error, result) => {
+
+        //             let wordid = 0
+        //             console.log("result--", result.length);
+        //             setEwordsl(result.length);
+        //             console.log("ewords_l--", ewordsl);
+        //             let randengword = random_ewords(result.length);
+        //            // wordid = randengword;
+        //            // wordidd = wordid;
+        //             console.log("randengword", randengword);
+        //             setRandEngWord(randengword);
+        //             console.log("getewords_result_randengword", randengword);
+        //            // let wordid = 2;
+        //            // ewords_result(wordid);
+        //         })
+        //     )
+        // }
+
+
+
+        // ////////
+        // var getewords_result = contractt.methods.getEWords().call((error, result) => {
+
+        //     let wordid = 0
+        //     console.log("result--", result.length);
+        //     setEwordsl(result.length);
+        //     console.log("ewords_l--", ewordsl);
+        //     let randengword = random_ewords(result.length);
+        //    // wordid = randengword;
+        //    // wordidd = wordid;
+        //     console.log("randengword", randengword);
+        //     setRandEngWord(randengword);
+        //     console.log("getewords_result_randengword", randengword);
+        //    // let wordid = 2;
+        //    // ewords_result(wordid);
+        // });
+        // ///////
+
+        const getewordsresult = () => {
+
+            let randengword = 0;
+        
+            return (
+                contractt.methods.getEWords().call((error, result) => {
     
-        var eword_result = contractt.methods.getEngWordEngExplainedAndPronounciation(1).call((error, result) => {
+                    let wordid = 0
+                    console.log("result--", result.length);
+                    setEwordsl(result.length);
+                    console.log("ewords_l--", ewordsl);
+                    randengword = random_ewords(result.length);
+                   /////// geteword(randengword);
+                   
+                    // wordid = randengword;
+                   // wordidd = wordid;
+                    console.log("randengword", randengword);
+                  
+                  
+                    // setRandEngWord(randengword);
+                    // console.log("getewords_result_randengword", randengword);
+    
+                    // let resultt = ewordresult(randengword);
+                    // console.log("resultt", resultt)
+    
 
-            let engword = "";
-            console.log("eword_result--", result[0]);
-            engword = result[0];
-             setEngword(engword);
-            // setEngword_Explained(engword);
-           // engword = result[0];
 
-            console.log("eword_correct_result--", result[2]);
-            let correct_eng_explained = result[2];
-             setCorrect_engword_explained(result[2])
-            //setCorrect_engword_explained(correct_eng_explained);
-            console.log("setCorrect_engword_explained", correct_engword_explained);
 
-        });
+                   // let wordid = 2;
+                   // ewords_result(wordid);
+                })
+            )
+        }
 
-        var ewords_result = contractt.methods.getEWords1(0).call((error, result) => {
+
+
+
+
+
+
+
+
+    
+        // var eword_result = contractt.methods.getEngWordEngExplainedAndPronounciation(wordid).call((error, result) => {
+
+        //     let engword = "";
+        //     console.log("eword_result--", result[0]);
+        //     engword = result[0];
+        //      setEngword(engword);
+        //     // setEngword_Explained(engword);
+        //    // engword = result[0];
+
+        //     console.log("eword_correct_result--", result[2]);
+        //     let correct_eng_explained = result[2];
+        //      setCorrect_engword_explained(result[2])
+        //     //setCorrect_engword_explained(correct_eng_explained);
+        //     console.log("setCorrect_engword_explained", correct_engword_explained);
+
+        // });
+
+        var ewords_result = contractt.methods.getEWords1(wordid).call((error, result) => {
 
             let engword_explained = "";
             // console.log("ewords_result--", result[0]);
@@ -180,6 +271,14 @@ const LearnEngWords = () => {
     // setDatacount([...newdata, newdata]);
     // console.log("newdata", newdata);
 
+    // let rand = randEngWord
+    // let wordid_to_number = parseInt(rand);
+    // let wordid = wordid_to_number;
+    
+    
+    // number(rand);
+    //// let wordid = 2;
+     // console.log("typof_wordid", typeof(wordid));
 
     Contract.setProvider('wss://eth-goerli.g.alchemy.com/v2/1NkuHJk9fySa1xwgPZ21rwqkGJbh_9Cm');
 
@@ -188,13 +287,45 @@ const LearnEngWords = () => {
          
     console.log("contract", contractt);
 
-    var getewords_result = contractt.methods.getEWords().call((error, result) => {
+    // var getewords_result = contractt.methods.getEWords().call((error, result) => {
 
-        console.log("result--", result.length);
-        setEwordsl(result.length);
-        console.log("ewords_l--", ewordsl);
-        random_ewords(result.length);
-    });
+    //     console.log("result--", result.length);
+    //     setEwordsl(result.length);
+    //     console.log("ewords_l--", ewordsl);
+    //     random_ewords(result.length);
+    // });
+
+
+
+    const geteword = (wordid) => {
+
+        console.log("geteword_wordid", wordid);
+
+        return (
+
+            contractt.methods.getEngWordEngExplainedAndPronounciation(wordid).call((error, result) => {
+
+                let engword = "";
+                console.log("eword_result--", result[0]);
+                engword = result[0];
+                 setEngword(engword);
+                // setEngword_Explained(engword);
+               // engword = result[0];
+    
+                console.log("eword_correct_result--", result[2]);
+                let correct_eng_explained = result[2];
+                 setCorrect_engword_explained(result[2])
+                //setCorrect_engword_explained(correct_eng_explained);
+                console.log("setCorrect_engword_explained", correct_engword_explained);
+    
+            })
+
+
+        )
+    }
+
+
+
 
     const random_ewords = (result) => {
         console.log("random_ewords_result_l--", result);
@@ -209,9 +340,67 @@ const LearnEngWords = () => {
         const dataa =  Math.floor(Math.random() * (max - min) + min);
 
         console.log("random_ewords_dataa--", dataa);
+
+       
+        //eword_result(dataa);
+        ewordresult(data);
+
+        return dataa;
        // ewordresult(dataa);
 
     }
+
+   
+   
+    // //////ewordresult async
+    // const ewordresult = async (wordid) => {
+
+    //     var eword_result = contractt.methods.getEngWordEngExplainedAndPronounciation(wordid).call((error, result) => {
+
+    //         let engword = "";
+    //         console.log("eword_result--", result[0]);
+    //         engword = result[0];
+    //          setEngword(engword);
+    //         // setEngword_Explained(engword);
+    //        // engword = result[0];
+    
+    //         console.log("eword_correct_result--", result[2]);
+    //         let correct_eng_explained = result[2];
+    //          setCorrect_engword_explained(result[2])
+    //         //setCorrect_engword_explained(correct_eng_explained);
+    //         console.log("setCorrect_engword_explained", correct_engword_explained);
+    
+    //     });
+
+
+    // }
+    // ///////////
+
+    // var eword_result = contractt.methods.getEngWordEngExplainedAndPronounciation(wordid).call((error, result) => {
+
+    //     let engword = "";
+    //     console.log("eword_result--", result[0]);
+    //     engword = result[0];
+    //      setEngword(engword);
+    //     // setEngword_Explained(engword);
+    //    // engword = result[0];
+
+    //     console.log("eword_correct_result--", result[2]);
+    //     let correct_eng_explained = result[2];
+    //      setCorrect_engword_explained(result[2])
+    //     //setCorrect_engword_explained(correct_eng_explained);
+    //     console.log("setCorrect_engword_explained", correct_engword_explained);
+
+    // });
+
+   
+
+
+
+
+
+
+
 
     // const ewordresult = (dataa) => {
 
@@ -237,6 +426,41 @@ const LearnEngWords = () => {
     // });
 
 
+
+
+
+    // const getewordsresult = () => {
+
+        
+    //     return (
+    //         contractt.methods.getEWords().call((error, result) => {
+
+    //             let wordid = 0
+    //             console.log("result--", result.length);
+    //             setEwordsl(result.length);
+    //             console.log("ewords_l--", ewordsl);
+    //             let randengword = random_ewords(result.length);
+    //            // wordid = randengword;
+    //            // wordidd = wordid;
+    //             console.log("randengword", randengword);
+    //             setRandEngWord(randengword);
+    //             console.log("getewords_result_randengword", randengword);
+
+    //             let resultt = ewordresult(randengword);
+    //             console.log("resultt", resultt)
+
+    //            // let wordid = 2;
+    //            // ewords_result(wordid);
+    //         })
+    //     )
+    // }
+
+
+
+
+
+
+
     const handleClick = (item) => {
 
         console.log("item", item);
@@ -244,9 +468,45 @@ const LearnEngWords = () => {
 
       const pressHandler = (item) => {
 
+        let result
+
         console.log("item", item);
         console.log("correct_engword_explained", correct_engword_explained);
         console.log(item===correct_engword_explained);
+              
+        if (item===correct_engword_explained) {
+            console.log("OK")
+           // getewordsresult();
+        } else {
+            console.log("NO")
+        }
+       
+
+
+
+       
+
+
+        // var getewords_result = contractt.methods.getEWords().call((error, result) => {
+
+        //     let randengword = 0;
+
+        //     console.log("result--", result.length);
+        //     setEwordsl(result.length);
+        //     console.log("ewords_l--", ewordsl);
+        //     randengword = random_ewords(result.length);
+        //     wordid = randengword;
+        //     console.log("randengword", randengword);
+        //    // console.log("getwords_result_wordid", wordid);
+        //     setRandEngWord(randengword);
+        //     console.log("getewords_result_randengword", randengword);
+        //    // let wordid = 2;
+        //    // ewords_result(wordid);
+        // });
+
+
+
+
       }
 
 
