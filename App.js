@@ -61,6 +61,8 @@ import EngWords from './EngWords';
 import { Formik } from 'formik';
 //import LearnEngWords from './LearnEngWords';
 import LearnEngWordss from './LearnEngWordss';
+import LearnEngWordsWeb3 from './LearnEngWordsWeb3';
+import EngWordss from './EngWordss';
 
 
 //const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
@@ -92,7 +94,8 @@ const BottomTabNavigator = () => {
       
       {/* <Tab.Screen name='Learn' component={LearnnnnScreen} options={{ headerShown: false }}/> */}
       <Tab.Screen name='Learn' component={LearnEngWordss} options={{ headerShown: false }}/>
-      <Tab.Screen name='Words' component={WordssScreen} />
+      {/* <Tab.Screen name='Words' component={WordssScreen} /> */}
+      <Tab.Screen name='Words' component={EngWordss} options={{ headerShown: false }}/>
       {/* <Tab.Screen name='Contact' component={ContactScreen} /> */}
     </Tab.Navigator>
   )
@@ -731,6 +734,7 @@ const App: () => Node = () => {
     
 
 <SafeAreaView>
+  <LearnEngWordsWeb3 />
   {/* <EngWords /> */}
    {/* <EWords /> */}
   
