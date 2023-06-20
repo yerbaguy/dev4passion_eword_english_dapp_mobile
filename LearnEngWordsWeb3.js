@@ -45,6 +45,9 @@ const LearnEngWordsWeb3 = () => {
 
     const addWord = async () => {
 
+
+        
+
         const nonce = await web3.eth.getTransactionCount(PUBLIC_KEY, 'latest');
         const gasEstimate = await contractt.methods.AddEWord("variety","/vəˈraɪəti/","several different sorts of the same thing").gasEstimate();
 
@@ -88,6 +91,8 @@ const LearnEngWordsWeb3 = () => {
         // });
 
         await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
+    
+        
     }
 
     return (
