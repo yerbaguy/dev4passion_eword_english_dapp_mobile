@@ -25,6 +25,7 @@
     "buffer": "^6.0.3",
     "dns.js": "^1.0.1",
     "dotenv": "^16.0.3",
+    "ethereumjs-tx": "^2.1.2",
     "events": "^1.1.1",
     "https-browserify": "^0.0.1",
     "node-libs-browser": "^2.2.1",

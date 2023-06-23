@@ -63,6 +63,7 @@ import { Formik } from 'formik';
 import LearnEngWordss from './LearnEngWordss';
 import LearnEngWordsWeb3 from './LearnEngWordsWeb3';
 import EngWordss from './EngWordss';
+import LearnEngWordsWeb3_1 from './LearnEngWordsWeb3_1';
 
 
 //const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
@@ -734,7 +735,9 @@ const App: () => Node = () => {
     
 
 <SafeAreaView>
-  <LearnEngWordsWeb3 />
+
+   <LearnEngWordsWeb3_1 />
+  {/* <LearnEngWordsWeb3 /> */}
   {/* <EngWords /> */}
    {/* <EWords /> */}
   
