@@ -64,6 +64,8 @@ import LearnEngWordss from './LearnEngWordss';
 import LearnEngWordsWeb3 from './LearnEngWordsWeb3';
 import EngWordss from './EngWordss';
 import LearnEngWordsWeb3_1 from './LearnEngWordsWeb3_1';
+import EWordss from './EWordss';
+import AddEngWords from './AddEngWords';
 
 
 //const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
@@ -95,6 +97,8 @@ const BottomTabNavigator = () => {
       
       {/* <Tab.Screen name='Learn' component={LearnnnnScreen} options={{ headerShown: false }}/> */}
       <Tab.Screen name='Learn' component={LearnEngWordss} options={{ headerShown: false }}/>
+      <Tab.Screen name='Add Words' component={AddEngWords} options={{ headerShown: false }}/>
+
       {/* <Tab.Screen name='Words' component={WordssScreen} /> */}
       <Tab.Screen name='Words' component={EngWordss} options={{ headerShown: false }}/>
       {/* <Tab.Screen name='Contact' component={ContactScreen} /> */}
@@ -736,6 +740,7 @@ const App: () => Node = () => {
 
 <SafeAreaView>
 
+   <EWordss />
    <LearnEngWordsWeb3_1 />
   {/* <LearnEngWordsWeb3 /> */}
   {/* <EngWords /> */}
