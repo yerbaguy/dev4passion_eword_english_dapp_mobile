@@ -11,28 +11,16 @@ import com.facebook.react.shell.MainReactPackage;
 import java.util.Arrays;
 import java.util.ArrayList;
 
-// @react-native-async-storage/async-storage
-import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
-// @react-native-community/masked-view
-import org.reactnative.maskedview.RNCMaskedViewPackage;
-// react-native-gesture-handler
-import com.swmansion.gesturehandler.RNGestureHandlerPackage;
-// react-native-get-random-values
-import org.linusu.RNGetRandomValuesPackage;
-// react-native-os
-import com.peel.react.rnos.RNOSModule;
+// react-native-background-timer
+import com.ocetnik.timer.BackgroundTimerPackage;
 // react-native-randombytes
 import com.bitgo.randombytes.RandomBytesPackage;
-// react-native-reanimated
-import com.swmansion.reanimated.ReanimatedPackage;
 // react-native-safe-area-context
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 // react-native-screens
 import com.swmansion.rnscreens.RNScreensPackage;
-// react-native-tcp
-import com.peel.react.TcpSocketsModule;
-// react-native-udp
-import com.tradle.react.UdpSocketsModule;
+// react-native-webview
+import com.reactnativecommunity.webview.RNCWebViewPackage;
 
 public class PackageList {
   private Application application;
@@ -78,17 +66,11 @@ public class PackageList {
   public ArrayList<ReactPackage> getPackages() {
     return new ArrayList<>(Arrays.<ReactPackage>asList(
       new MainReactPackage(mConfig),
-      new AsyncStoragePackage(),
-      new RNCMaskedViewPackage(),
-      new RNGestureHandlerPackage(),
-      new RNGetRandomValuesPackage(),
-      new RNOSModule(),
+      new BackgroundTimerPackage(),
       new RandomBytesPackage(),
-      new ReanimatedPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
-      new TcpSocketsModule(),
-      new UdpSocketsModule()
+      new RNCWebViewPackage()
     ));
   }
 }
